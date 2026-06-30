@@ -1,0 +1,244 @@
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* ---------- Header ---------- */
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.dashboard__title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dashboard__pulse {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent-good);
+  box-shadow: 0 0 0 0 rgba(45, 212, 167, 0.6);
+  animation: pulse 2.2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 167, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(45, 212, 167, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 167, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard__pulse {
+    animation: none;
+  }
+}
+
+.dashboard__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.dashboard__subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.dashboard__loading {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---------- Run button ---------- */
+
+.run-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--accent-info);
+  color: #0b0f14;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.run-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.run-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.run-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.run-button__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0b0f14;
+  flex-shrink: 0;
+}
+
+.run-button__dot--spin {
+  animation: spin 0.9s linear infinite;
+  border: 1.5px solid #0b0f14;
+  border-top-color: transparent;
+  background: transparent;
+  width: 10px;
+  height: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Status banners ---------- */
+
+.status-banner {
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.status-banner--error {
+  background: rgba(242, 73, 92, 0.08);
+  border-color: rgba(242, 73, 92, 0.3);
+  color: var(--accent-bad);
+}
+
+.status-banner--success {
+  background: rgba(45, 212, 167, 0.08);
+  border-color: rgba(45, 212, 167, 0.3);
+  color: var(--accent-good);
+}
+
+/* ---------- Summary cards ---------- */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.summary-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 3px solid var(--panel-border);
+}
+
+.summary-card--good {
+  border-top-color: var(--accent-good);
+}
+
+.summary-card--bad {
+  border-top-color: var(--accent-bad);
+}
+
+.summary-card__label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summary-card__value {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.summary-card__suffix {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+/* ---------- Charts ---------- */
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.chart-panel__title {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  height: 280px;
+}
+
+.chart-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard {
+    padding: 20px 16px 48px;
+  }
+}
