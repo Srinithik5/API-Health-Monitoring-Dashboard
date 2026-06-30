@@ -6,6 +6,7 @@ const morgan = require("morgan");
 
 const indexRoutes = require("./routes/index.routes");
 const healthRoutes = require("./routes/health.routes");
+const monitorRoutes = require("./routes/monitorRoutes");
 
 const notFound = require("./middleware/notFound");
 const errorHandler = require("./middleware/errorHandler");
@@ -20,6 +21,7 @@ app.use(morgan("dev"));
 // ---------- Routes ----------
 app.use("/", indexRoutes);
 app.use("/health", healthRoutes);
+app.use("/monitor", monitorRoutes);
 
 // ---------- 404 + Error Handling ----------
 app.use(notFound);
